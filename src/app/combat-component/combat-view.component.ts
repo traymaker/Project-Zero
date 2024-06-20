@@ -1,26 +1,26 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
-import { BattleLoadService } from '../battle-service/battle-load.service';
 import { StateService } from '../state-service/state.service';
+import { CombatLoadService } from '../combat-service/combat-load.service';
 
 @Component({
-  selector: 'battle-view',
+  selector: 'combat-view',
   standalone: true,
   imports: [CommonModule, RouterLink, RouterOutlet],
   template: `
-    <h2>Battle View:</h2>
-    <button type="button" (click)="FleeBattle()">Flee Battle</button>
+    <h2>Combat View:</h2>
+    <button type="button" (click)="FleeCombat()">Flee combat</button>
   `,
 })
-export class BattleViewComponent {
+export class CombatViewComponent {
   stateService = inject(StateService);
-  battleLoadService = inject(BattleLoadService);
+  combatLoadService = inject(CombatLoadService);
   constructor(private _router: Router) {
-    this.battleLoadService.loadBattle(this.stateService.savedGame);
+    this.combatLoadService.loadCombat(this.stateService.savedGame);
   }
 
-  FleeBattle() {
+  FleeCombat() {
     this._router.navigate(['/home-view']);
   }
 }

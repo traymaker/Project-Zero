@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { StateService } from '../state-service/state.service';
-import { Fighter } from '../entities/fighter';
+import { Player } from '../entities/actors/player';
 
 @Component({
   selector: 'home-view',
@@ -10,8 +10,8 @@ import { Fighter } from '../entities/fighter';
   imports: [CommonModule, RouterLink, RouterOutlet],
   template: `
     <h2>Home View:</h2>
-    <a class="primary" [routerLink]="['/battle-view']"
-      >Venture forth (battle)</a
+    <a class="primary" [routerLink]="['/combat-view']"
+      >Venture forth (combat)</a
     >
     <br />
     <div>Your status:</div>
@@ -25,9 +25,9 @@ import { Fighter } from '../entities/fighter';
 })
 export class HomeViewComponent {
   stateService = inject(StateService);
-  player: Fighter;
+  player: Player;
 
   constructor() {
-    this.player = this.stateService.currentFighter;
+    this.player = this.stateService.currentPlayer;
   }
 }

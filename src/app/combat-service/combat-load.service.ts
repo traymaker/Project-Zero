@@ -1,22 +1,22 @@
 import { Injectable, inject } from '@angular/core';
 import { baseUrl } from '../admin-component/app.component';
 import { Save } from '../entities/save';
-import { createTestFoe } from '../entities/foe';
+import { createTestFoe } from '../entities/actors/foe';
 import { StateService } from '../state-service/state.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class BattleLoadService {
+export class CombatLoadService {
   stateService = inject(StateService);
 
-  loadBattle(save: Save) {
+  loadCombat(save: Save) {
     console.log(save.playerCharacter);
     const foes = [createTestFoe()];
     this.stateService.currentFoes = foes;
   }
 
-  unloadBattle() {}
+  unloadCombat() {}
   // async createSavedGame(profileName: string): Promise<boolean> {
   //   const data = await fetch(baseUrl + 'saves');
   //   const saves = (await data.json()) as Save[];

@@ -1,4 +1,4 @@
-import { Fighter, newPlayer } from './fighter';
+import { Player, newPlayer } from './actors/player';
 
 export interface Save {
   /** internal save game identifier. Currently unused. */
@@ -7,8 +7,8 @@ export interface Save {
   /** name of character for save game. */
   profileName: string;
 
-  /** repesents player character in battle. */
-  playerCharacter: Fighter;
+  /** repesents player character in combat. */
+  playerCharacter: Player;
 }
 
 export const newSave = (playerName: string): Save => {

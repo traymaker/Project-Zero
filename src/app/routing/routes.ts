@@ -3,7 +3,7 @@ import { HomeComponent } from '../admin-component/home.component';
 import { NewGameComponent } from '../admin-component/new-game/new-game.component';
 import { SavedGamesComponent } from '../admin-component/saved-games/saved-games.component';
 import { HomeViewComponent } from '../sim-component/home-view.component';
-import { BattleViewComponent } from '../battle-component/battle-view.component';
+import { CombatViewComponent } from '../combat-component/combat-view.component';
 
 const routeConfig: Routes = [
   {
@@ -27,9 +27,9 @@ const routeConfig: Routes = [
     title: 'Home Base',
   },
   {
-    path: 'battle-view',
-    component: BattleViewComponent,
-    title: 'Battle!',
+    path: 'combat-view',
+    component: CombatViewComponent,
+    title: 'combat!',
   },
 ];
 

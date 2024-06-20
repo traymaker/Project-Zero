@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Save } from '../entities/save';
-import { Fighter } from '../entities/fighter';
-import { Foe } from '../entities/foe';
+import { Player } from '../entities/actors/player';
+import { Foe } from '../entities/actors/foe';
 
 @Injectable({
   providedIn: 'root',
 })
 export class StateService {
   private _savedGame?: Save;
-  private _currentFighter?: Fighter;
+  private _currentPlayer?: Player;
   private _currentFoes?: Foe[];
 
   constructor() {}
@@ -22,18 +22,18 @@ export class StateService {
 
   public set savedGame(save: Save) {
     this._savedGame = save;
-    this._currentFighter = save.playerCharacter;
+    this._currentPlayer = save.playerCharacter;
   }
 
-  public get currentFighter() {
-    if (this._currentFighter) {
-      return this._currentFighter;
+  public get currentPlayer() {
+    if (this._currentPlayer) {
+      return this._currentPlayer;
     }
-    throw new DOMException('No fighter loaded?');
+    throw new DOMException('No Player loaded?');
   }
 
-  public set currentFighter(fighter: Fighter) {
-    this._currentFighter = fighter;
+  public set currentPlayer(Player: Player) {
+    this._currentPlayer = Player;
   }
 
   public get currentFoes() {

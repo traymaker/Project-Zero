@@ -1,7 +1,9 @@
-export interface Fighter {
-  /** internal fighter identifier. Currently unused. */
+import { Paladin } from './paladin';
+
+export interface Player {
+  /** internal Player identifier. Currently unused. */
   id: string;
-  /** fighter name for display. */
+  /** Player name for display. */
   name: string;
   attack: number;
   defense: number;
@@ -9,8 +11,8 @@ export interface Fighter {
   resistance: number;
 }
 
-export const newPlayer = (name: string): Fighter => {
-  const player: Fighter = {
+export const newPlayer = (name: string): Player => {
+  const player: Paladin = {
     id: crypto.randomUUID(),
     name: name,
     attack: 10,
