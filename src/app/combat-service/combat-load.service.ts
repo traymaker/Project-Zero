@@ -1,8 +1,9 @@
 import { Injectable, inject } from '@angular/core';
-import { baseUrl } from '../admin-component/app.component';
 import { Save } from '../entities/save';
-import { createTestFoe } from '../entities/actors/foe';
+import { Foe, createTestFoe } from '../entities/actors/foe';
 import { StateService } from '../state-service/state.service';
+import { CombatTile } from '../entities/combat/combat-tile';
+import { CombatGrid } from '../entities/combat/combat-grid';
 
 @Injectable({
   providedIn: 'root',
@@ -12,11 +13,32 @@ export class CombatLoadService {
 
   loadCombat(save: Save) {
     console.log(save.playerCharacter);
-    const foes = [createTestFoe()];
-    this.stateService.currentFoes = foes;
+    this.stateService.currentFoes = this.generateFoes();
+    this.stateService.currentGrid = this.generateGrid();
+    console.log(this.stateService.currentGrid.toString());
   }
 
   unloadCombat() {}
+
+  generateFoes(): Foe[] {
+    const foes = [createTestFoe()];
+    return foes;
+  }
+
+  generateGrid(): CombatGrid {
+    const tiles: CombatTile[][] = [[]];
+    const size = 20;
+    for (let i = 0; i < size; i++) {
+      tiles.push([]);
+
+      for (let j = 0; j < size; j++) {
+        tiles[i].push(new CombatTile(i, j));
+      }
+    }
+
+    const grid = new CombatGrid(tiles);
+    return grid;
+  }
   // async createSavedGame(profileName: string): Promise<boolean> {
   //   const data = await fetch(baseUrl + 'saves');
   //   const saves = (await data.json()) as Save[];
