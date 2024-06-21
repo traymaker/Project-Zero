@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { baseUrl } from '../admin-component/app.component';
-import { Save, newSave } from '../entities/save';
+import { baseUrl } from '../../admin-component/app.component';
+import { Save, newSave } from '../../entities/save';
 
 @Injectable({
   providedIn: 'root',

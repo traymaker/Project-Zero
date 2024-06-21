@@ -1,4 +1,6 @@
-export interface Foe {
+import { Actor } from './actor';
+
+export interface Foe extends Actor {
   /** internal foe identifier. Currently unused. */
   id: string;
   /** foe name for display. */

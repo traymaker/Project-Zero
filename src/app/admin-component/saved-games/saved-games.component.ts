@@ -4,8 +4,8 @@ import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { baseUrl } from '../app.component';
 import { Save } from '../../entities/save';
 import { SavedGameComponent } from './saved-game.component';
-import { SavedGameService } from '../../admin-service/saved-game.service';
-import { StateService } from '../../state-service/state.service';
+import { SavedGameService } from '../../service/admin-service/saved-game.service';
+import { StateService } from '../../service/state-service/state.service';
 
 @Component({
   selector: 'saved-games',

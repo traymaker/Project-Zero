@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
-import { StateService } from '../state-service/state.service';
+import { StateService } from '../service/state-service/state.service';
 import { Player } from '../entities/actors/player';
 
 @Component({

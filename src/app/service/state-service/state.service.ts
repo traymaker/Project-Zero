@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Save } from '../entities/save';
-import { Player } from '../entities/actors/player';
-import { Foe } from '../entities/actors/foe';
-import { CombatTile } from '../entities/combat/combat-tile';
-import { CombatGrid } from '../entities/combat/combat-grid';
+import { Save } from '../../entities/save';
+import { Player } from '../../entities/actors/player';
+import { Foe } from '../../entities/actors/foe';
+import { CombatGrid } from '../../entities/combat/combat-grid';
 
 @Injectable({
   providedIn: 'root',
 })
+// Create service for reading/displaying state?
 export class StateService {
   private _savedGame?: Save;
   private _currentPlayer?: Player;
@@ -16,7 +16,7 @@ export class StateService {
 
   constructor() {}
 
-  public get savedGame() {
+  public get savedGame(): Save {
     if (this._savedGame) {
       return this._savedGame;
     }
@@ -28,7 +28,7 @@ export class StateService {
     this._currentPlayer = save.playerCharacter;
   }
 
-  public get currentPlayer() {
+  public get currentPlayer(): Player {
     if (this._currentPlayer) {
       return this._currentPlayer;
     }
@@ -39,7 +39,7 @@ export class StateService {
     this._currentPlayer = Player;
   }
 
-  public get currentFoes() {
+  public get currentFoes(): Foe[] {
     if (this._currentFoes) {
       return this.currentFoes;
     }
@@ -50,14 +50,14 @@ export class StateService {
     this._currentFoes = foes;
   }
 
-  public get currentGrid() {
+  public get currentGrid(): CombatGrid {
     if (this._currentGrid) {
       return this._currentGrid;
     }
     throw new DOMException('No grid loaded?');
   }
 
-  public set currentGrid(grid: CombatGrid) {
+  public set currentGrid(grid: CombatGrid | undefined) {
     this._currentGrid = grid;
   }
 }

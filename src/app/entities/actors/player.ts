@@ -1,6 +1,7 @@
+import { Actor } from './actor';
 import { Paladin } from './paladin';
 
-export interface Player {
+export interface Player extends Actor {
   /** internal Player identifier. Currently unused. */
   id: string;
   /** Player name for display. */

@@ -1,8 +1,9 @@
+import { Actor } from '../actors/actor';
 import { Foe } from '../actors/foe';
 import { Player } from '../actors/player';
 
 export class CombatTile {
-  contents?: Player | Foe;
+  contents?: Actor;
   xCoord: number;
   yCoord: number;
 
@@ -20,5 +21,16 @@ export class CombatTile {
       stringOut += '-';
     }
     return stringOut;
+  }
+
+  public isEmpty(): boolean {
+    if (this.contents) {
+      return true;
+    }
+    return false;
+  }
+
+  public addActor(actor: Actor) {
+    this.contents = actor;
   }
 }

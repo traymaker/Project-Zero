@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { SavedGameService } from '../../admin-service/saved-game.service';
-import { StateService } from '../../state-service/state.service';
+import { SavedGameService } from '../../service/admin-service/saved-game.service';
+import { StateService } from '../../service/state-service/state.service';
 
 @Component({
   selector: 'new-game',
