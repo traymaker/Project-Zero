@@ -1,0 +1,10 @@
+<h2>Combat View:</h2>
+<tbody>
+    <tr *ngFor="let row of this.stateService.currentGrid.grid">
+        <td *ngFor="let tile of row">
+            {{tile.toString()}}
+        </td>
+    </tr>
+</tbody>
+<br>
+<button type="button" (click)="FleeCombat()">Flee combat</button>

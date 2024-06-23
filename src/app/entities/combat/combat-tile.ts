@@ -16,7 +16,8 @@ export class CombatTile {
     let stringOut = '';
     stringOut += '(' + this.xCoord + ',' + this.yCoord + '):';
     if (this.contents) {
-      stringOut += this.contents;
+      console.log(this.contents.toString());
+      stringOut += this.contents.toString();
     } else {
       stringOut += '-';
     }
@@ -24,7 +25,7 @@ export class CombatTile {
   }
 
   public isEmpty(): boolean {
-    if (this.contents) {
+    if (this.contents === undefined) {
       return true;
     }
     return false;

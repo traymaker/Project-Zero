@@ -13,8 +13,12 @@ export class CombatLoadService extends BaseService {
   loadCombat() {
     this.stateService.currentFoes = this.generateFoes();
     this.stateService.currentGrid = this.generateGrid();
-    this.placeFoes(this.stateService.currentFoes);
-    this.placePlayer(this.stateService.currentPlayer);
+    this.stateService.currentGrid = this.placeFoes(
+      this.stateService.currentFoes
+    );
+    this.stateService.currentGrid = this.placePlayer(
+      this.stateService.currentPlayer
+    );
   }
 
   unloadCombat() {
@@ -29,6 +33,7 @@ export class CombatLoadService extends BaseService {
 
   generateGrid(): CombatGrid {
     const tiles: CombatTile[][] = [[]];
+    // variable per level?
     const size = 20;
     for (let i = 0; i < size; i++) {
       tiles.push([]);
@@ -42,25 +47,39 @@ export class CombatLoadService extends BaseService {
     return grid;
   }
 
-  placeFoes(foes: Foe[]): void {
+  placeFoes(foes: Foe[]): CombatGrid {
     for (let f of foes) {
-      for (let row of this.stateService.currentGrid.grid) {
-        for (let tile of row) {
-          if (tile.isEmpty()) {
-            tile.addActor(f);
-          }
+      this.stateService.currentGrid = this.placeFoe(f);
+    }
+
+    return this.stateService.currentGrid;
+  }
+
+  placeFoe(foe: Foe): CombatGrid {
+    for (let row of this.stateService.currentGrid.grid) {
+      for (let tile of row) {
+        if (tile.isEmpty()) {
+          tile.addActor(foe);
+          return this.stateService.currentGrid;
         }
       }
     }
+    throw new DOMException('Nowhere to place foe?');
   }
 
-  placePlayer(player: Player): void {
+  placePlayer(player: Player): CombatGrid {
     for (let row of this.stateService.currentGrid.grid) {
       for (let tile of row) {
         if (tile.isEmpty()) {
           tile.addActor(player);
+          return this.stateService.currentGrid;
         }
       }
     }
+
+    throw new DOMException('Nowhere to place player?');
   }
+
+  // TODO: add terrain features
+  placeTerrain(): void {}
 }

@@ -1,7 +1,7 @@
 import { Actor } from './actor';
 import { Paladin } from './paladin';
 
-export interface Player extends Actor {
+export class Player extends Actor {
   /** internal Player identifier. Currently unused. */
   id: string;
   /** Player name for display. */
@@ -10,6 +10,27 @@ export interface Player extends Actor {
   defense: number;
   magic: number;
   resistance: number;
+
+  constructor(
+    id?: string,
+    name?: string,
+    attack?: number,
+    defense?: number,
+    magic?: number,
+    resistance?: number
+  ) {
+    super();
+    this.id = crypto.randomUUID();
+    this.name = 'test';
+    this.attack = 10;
+    this.defense = 10;
+    this.magic = 10;
+    this.resistance = 10;
+  }
+
+  public override toString() {
+    return this.name;
+  }
 }
 
 export const newPlayer = (name: string): Player => {

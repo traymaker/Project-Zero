@@ -41,7 +41,7 @@ export class StateService {
 
   public get currentFoes(): Foe[] {
     if (this._currentFoes) {
-      return this.currentFoes;
+      return this._currentFoes;
     }
     throw new DOMException('No foes loaded?');
   }

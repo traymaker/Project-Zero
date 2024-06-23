@@ -8,10 +8,7 @@ import { CombatLoadService } from '../service/combat-service/combat-load.service
   selector: 'combat-view',
   standalone: true,
   imports: [CommonModule, RouterLink, RouterOutlet],
-  template: `
-    <h2>Combat View:</h2>
-    <button type="button" (click)="FleeCombat()">Flee combat</button>
-  `,
+  templateUrl: './combat-view.component.html',
 })
 export class CombatViewComponent {
   stateService = inject(StateService);

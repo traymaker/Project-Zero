@@ -1,6 +1,6 @@
 import { Actor } from './actor';
 
-export interface Foe extends Actor {
+export class Foe extends Actor {
   /** internal foe identifier. Currently unused. */
   id: string;
   /** foe name for display. */
@@ -9,6 +9,27 @@ export interface Foe extends Actor {
   defense: number;
   magic: number;
   resistance: number;
+
+  constructor(
+    id?: string,
+    name?: string,
+    attack?: number,
+    defense?: number,
+    magic?: number,
+    resistance?: number
+  ) {
+    super();
+    this.id = crypto.randomUUID();
+    this.name = 'test';
+    this.attack = 5;
+    this.defense = 5;
+    this.magic = 5;
+    this.resistance = 5;
+  }
+
+  public override toString() {
+    return this.name;
+  }
 }
 
 export const createTestFoe = (): Foe => {
