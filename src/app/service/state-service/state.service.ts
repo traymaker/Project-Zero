@@ -25,7 +25,8 @@ export class StateService {
 
   public set savedGame(save: Save) {
     this._savedGame = save;
-    this._currentPlayer = save.playerCharacter;
+    // this doesn't work... somehow have to convert from JSON to the Player class. 
+    this._currentPlayer = save.playerCharacter as Player;
   }
 
   public get currentPlayer(): Player {

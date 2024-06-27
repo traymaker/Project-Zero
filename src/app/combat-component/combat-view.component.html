@@ -2,7 +2,7 @@
 <tbody>
     <tr *ngFor="let row of this.stateService.currentGrid.grid">
         <td *ngFor="let tile of row">
-            {{tile.toString()}}
+            {{tile.getContentsToString()}}
         </td>
     </tr>
 </tbody>

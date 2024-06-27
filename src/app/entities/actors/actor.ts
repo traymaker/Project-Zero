@@ -1,3 +1,3 @@
 export abstract class Actor {
-  abstract toString(): string;
+  public abstract getName(): string;
 }

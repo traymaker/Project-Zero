@@ -12,12 +12,12 @@ export class CombatTile {
     this.yCoord = y;
   }
 
-  public toString(): string {
+  public getContentsToString(): string {
     let stringOut = '';
     stringOut += '(' + this.xCoord + ',' + this.yCoord + '):';
-    if (this.contents) {
-      console.log(this.contents.toString());
-      stringOut += this.contents.toString();
+    if (this.contents !== undefined) {
+      console.log(this.contents.getName());
+      stringOut += this.contents.getName();
     } else {
       stringOut += '-';
     }

@@ -11,35 +11,35 @@ export class Foe extends Actor {
   resistance: number;
 
   constructor(
-    id?: string,
-    name?: string,
-    attack?: number,
-    defense?: number,
-    magic?: number,
-    resistance?: number
+    id: string,
+    name: string,
+    attack: number,
+    defense: number,
+    magic: number,
+    resistance: number
   ) {
     super();
-    this.id = crypto.randomUUID();
-    this.name = 'test';
-    this.attack = 5;
-    this.defense = 5;
-    this.magic = 5;
-    this.resistance = 5;
+    this.id = id;
+    this.name = name;
+    this.attack = attack;
+    this.defense = defense;
+    this.magic = magic;
+    this.resistance = resistance;
   }
 
-  public override toString() {
+  public getName(): string {
     return this.name;
   }
 }
 
 export const createTestFoe = (): Foe => {
-  const testFoe: Foe = {
-    id: crypto.randomUUID(),
-    name: 'test',
-    attack: 5,
-    defense: 5,
-    magic: 5,
-    resistance: 5,
-  };
+  const testFoe: Foe = new Foe(
+    crypto.randomUUID(),
+    'test',
+    5,
+    5,
+    5,
+    5,
+  );
   return testFoe;
 };

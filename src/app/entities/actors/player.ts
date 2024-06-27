@@ -12,35 +12,35 @@ export class Player extends Actor {
   resistance: number;
 
   constructor(
-    id?: string,
-    name?: string,
-    attack?: number,
-    defense?: number,
-    magic?: number,
-    resistance?: number
+    id: string,
+    name: string,
+    attack: number,
+    defense: number,
+    magic: number,
+    resistance: number
   ) {
     super();
-    this.id = crypto.randomUUID();
-    this.name = 'test';
-    this.attack = 10;
-    this.defense = 10;
-    this.magic = 10;
-    this.resistance = 10;
+    this.id = id;
+    this.name = name;
+    this.attack = attack;
+    this.defense = defense;
+    this.magic = magic;
+    this.resistance = resistance;
   }
 
-  public override toString() {
+  public getName(): string {
     return this.name;
   }
 }
 
 export const newPlayer = (name: string): Player => {
-  const player: Paladin = {
-    id: crypto.randomUUID(),
-    name: name,
-    attack: 10,
-    defense: 10,
-    magic: 10,
-    resistance: 10,
-  };
+  const player: Player = new Player(
+    crypto.randomUUID(),
+    name,
+    10,
+    10,
+    10,
+    10,
+  );
   return player;
 };
