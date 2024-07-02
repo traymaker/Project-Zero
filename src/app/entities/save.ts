@@ -1,6 +1,6 @@
 import { Player, newPlayer } from './actors/player';
 
-export interface Save {
+export class Save {
   /** internal save game identifier. Currently unused. */
   id: string;
 
@@ -9,6 +9,12 @@ export interface Save {
 
   /** repesents player character in combat. */
   playerCharacter: Player;
+
+  constructor(id: string, profileName: string, playerCharacter: Player) {
+    this.id = id;
+    this.profileName = profileName;
+    this.playerCharacter = playerCharacter;
+  }
 }
 
 export const newSave = (playerName: string): Save => {
