@@ -25,8 +25,7 @@ export class StateService {
 
   public set savedGame(save: Save) {
     this._savedGame = save;
-    // this doesn't work... somehow have to convert from JSON to the Player class. 
-    this._currentPlayer = save.playerCharacter as Player;
+    this.currentPlayer = save.playerCharacter;
   }
 
   public get currentPlayer(): Player {
@@ -36,8 +35,16 @@ export class StateService {
     throw new DOMException('No Player loaded?');
   }
 
-  public set currentPlayer(Player: Player) {
-    this._currentPlayer = Player;
+  public set currentPlayer(player: Player) {
+    // for some reason constructor has to be called here or current player becomes an interface
+    this._currentPlayer = new Player(
+      player.id, 
+      player.name, 
+      player.attack, 
+      player.defense, 
+      player.magic, 
+      player.resistance
+    );
   }
 
   public get currentFoes(): Foe[] {

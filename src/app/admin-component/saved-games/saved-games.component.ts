@@ -30,7 +30,6 @@ export class SavedGamesComponent {
   constructor(private _router: Router) {
     this.saveGameService.getAllSavedGames().then((savedGames: Save[]) => {
       this.savedGameList = savedGames;
-      console.log(this.savedGameList);
     });
   }
 

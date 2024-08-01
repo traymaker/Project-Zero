@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { baseUrl } from '../../admin-component/app.component';
 import { Save, newSave } from '../../entities/save';
+import { Player } from '../../entities/actors/player';
 
 @Injectable({
   providedIn: 'root',
@@ -33,7 +34,18 @@ export class SavedGameService {
 
   async getAllSavedGames(): Promise<Save[]> {
     const data = await fetch(baseUrl + 'saves');
-    return (await data.json()) ?? [];
+    const saveJsons = await data.json() as Save[];
+    let saves: Save[] = [];
+    for (let saveJson of saveJsons) {
+      saves.push(
+        new Save(
+          saveJson.id, 
+          saveJson.profileName, 
+          saveJson.playerCharacter,
+        )
+      );
+    }
+    return saveJsons;
   }
 
   async deleteSavedGame(savedGame: Save): Promise<Save[]> {

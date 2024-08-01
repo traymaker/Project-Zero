@@ -3,12 +3,14 @@ import { Component, inject } from '@angular/core';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { StateService } from '../service/state-service/state.service';
 import { CombatLoadService } from '../service/combat-service/combat-load.service';
+import { CombatTile } from '../entities/combat/combat-tile';
 
 @Component({
   selector: 'combat-view',
   standalone: true,
   imports: [CommonModule, RouterLink, RouterOutlet],
   templateUrl: './combat-view.component.html',
+  styleUrl: './combat-view.component.css'
 })
 export class CombatViewComponent {
   stateService = inject(StateService);
@@ -16,6 +18,10 @@ export class CombatViewComponent {
 
   constructor(private _router: Router) {
     this.combatLoadService.loadCombat();
+  }
+
+  GetTileColor(tile: CombatTile) {
+    return tile.getTileColor();
   }
 
   FleeCombat() {
