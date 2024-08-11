@@ -40,10 +40,7 @@ export class StateService {
     this._currentPlayer = new Player(
       player.id, 
       player.name, 
-      player.attack, 
-      player.defense, 
-      player.magic, 
-      player.resistance
+      player.movement,
     );
   }
 

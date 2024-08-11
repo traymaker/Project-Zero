@@ -12,13 +12,7 @@ import { Player } from '../../entities/actors/player';
 export class CombatLoadService extends BaseService {
   loadCombat() {
     this.stateService.currentFoes = this.generateFoes();
-    this.stateService.currentGrid = this.generateGrid();
-    this.stateService.currentGrid = this.placeFoes(
-      this.stateService.currentFoes
-    );
-    this.stateService.currentGrid = this.placePlayer(
-      this.stateService.currentPlayer
-    );
+    this.stateService.currentGrid = this.generateCombatGrid(this.stateService.currentPlayer);
   }
 
   unloadCombat() {
@@ -31,7 +25,7 @@ export class CombatLoadService extends BaseService {
     return foes;
   }
 
-  generateGrid(): CombatGrid {
+  generateCombatGrid(player: Player): CombatGrid {
     const tiles: CombatTile[][] = [[]];
     // variable per level?
     const size = 20;
@@ -43,36 +37,40 @@ export class CombatLoadService extends BaseService {
       }
     }
 
-    const grid = new CombatGrid(tiles);
+    const playerTile = this.placePlayer(tiles, player)
+    const foeTiles = this.placeFoes(tiles, this.generateFoes());
+
+    const grid = new CombatGrid(tiles, playerTile, foeTiles);
     return grid;
   }
 
-  placeFoes(foes: Foe[]): CombatGrid {
-    for (let f of foes) {
-      this.stateService.currentGrid = this.placeFoe(f);
+  placeFoes(tiles: CombatTile[][], foes: Foe[]): Map<string, CombatTile> {
+    const foeTiles = new Map<string, CombatTile>();
+    for (let foe of foes) {
+      foeTiles.set(foe.id, this.placeFoe(tiles, foe));
     }
 
-    return this.stateService.currentGrid;
+    return foeTiles;
   }
 
-  placeFoe(foe: Foe): CombatGrid {
-    for (let row of this.stateService.currentGrid.grid) {
+  placeFoe(tiles: CombatTile[][], foe: Foe): CombatTile {
+    for (let row of tiles) {
       for (let tile of row) {
         if (tile.isEmpty()) {
           tile.addActor(foe);
-          return this.stateService.currentGrid;
+          return tile;
         }
       }
     }
     throw new DOMException('Nowhere to place foe?');
   }
 
-  placePlayer(player: Player): CombatGrid {
-    for (let row of this.stateService.currentGrid.grid) {
+  placePlayer(tiles: CombatTile[][], player: Player): CombatTile {
+    for (let row of tiles) {
       for (let tile of row) {
         if (tile.isEmpty()) {
           tile.addActor(player);
-          return this.stateService.currentGrid;
+          return tile;
         }
       }
     }

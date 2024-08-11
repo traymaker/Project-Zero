@@ -16,10 +16,7 @@ import { Player } from '../entities/actors/player';
     <br />
     <div>Your status:</div>
     <div>Name: {{ player.name }}</div>
-    <div>Attack: {{ player.attack }}</div>
-    <div>Defense: {{ player.defense }}</div>
-    <div>Magic: {{ player.magic }}</div>
-    <div>Resistance: {{ player.resistance }}</div>
+    <div>Movement: {{ player.movement }}</div>
     <br />
   `,
 })

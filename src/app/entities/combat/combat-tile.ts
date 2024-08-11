@@ -3,7 +3,7 @@ import { Foe } from '../actors/foe';
 import { Player } from '../actors/player';
  
 // Show striped colors if multiple colors overlap?
-enum Color {
+export enum Color {
   Grey = 1,
   Red,
   Blue,
@@ -20,7 +20,7 @@ export class CombatTile {
   constructor(x: number, y: number) {
     this.xCoord = x;
     this.yCoord = y;
-    this.color = Color.Red;
+    this.color = Color.Grey;
   }
 
   // Add other colors
@@ -53,5 +53,13 @@ export class CombatTile {
 
   public addActor(actor: Actor) {
     this.contents = actor;
+  }
+
+  public removeActor() {
+    if (this.contents instanceof Actor) {
+      this.contents = undefined;
+      return;
+    }
+    throw new DOMException('removeActor incorrectly called on tile ' + this.getContentsToString() + '.');
   }
 }

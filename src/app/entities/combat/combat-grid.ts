@@ -1,10 +1,15 @@
 import { CombatTile } from './combat-tile';
 
+// These classes should not handle mutation. They should mostly store data, while mutation is handled by the services. 
 export class CombatGrid {
   grid: CombatTile[][] = [[]];
+  playerCurrentTile: CombatTile;
+  foeCurrentTiles: Map<string, CombatTile>;
 
-  constructor(tiles: CombatTile[][]) {
+  constructor(tiles: CombatTile[][], playerCurrentTile: CombatTile, foeCurrentTiles: Map<string, CombatTile>) {
     this.grid = tiles;
+    this.playerCurrentTile = playerCurrentTile;
+    this.foeCurrentTiles = foeCurrentTiles;
   }
 
   public toString(): string {
